@@ -23,7 +23,7 @@ const addSphere = (material) => {
     let mesh;
     let geometry = new THREE.PlaneGeometry(200, 200, 30, 30);
     mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(0, -120, 0);
+    mesh.position.set(0, 0, -10);
     mesh.geometry.vertices.forEach(displaceVert);
     return mesh;
 }

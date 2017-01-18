@@ -13,7 +13,7 @@ app.use(express.static('app'));
 
 app.route('/').get((req, res) => {
     let renderExport = renderer.renderFrame({
-        x: 0, y: -220, z: 20 + Math.random() * 40
+        x: 0, y: -120, z: 20 + Math.random() * 40
     });
     res.writeHead(200, { 'Content-Type': 'image/png' });
     renderExport.pngStream().pipe(res); 
