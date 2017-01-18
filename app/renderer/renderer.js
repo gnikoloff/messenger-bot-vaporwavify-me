@@ -1,8 +1,8 @@
 'use strict';
 const path = require('path');
 global.THREE = require('three');
-require(path.join(`${require.resolve('three')}../../../examples/js/renderers/Projector`));
-require(path.join(`${require.resolve('three')}../../../examples/js/renderers/CanvasRenderer`));
+require(path.join(`${require.resolve('three')}', '../../../examples/js/renderers/Projector`));
+require(path.join(`${require.resolve('three')}', '../../../examples/js/renderers/CanvasRenderer`));
 const Canvas = require('canvas-prebuilt');
 const fs = require("fs");
 
@@ -10,7 +10,7 @@ const terrain = require('./plane-terrain');
 const particles = require('./particles');
 const photo = require('./photo');
 
-let width  = 1024;
+let width  = 102hero4;
 let height = 768;
 
 const canvas = new Canvas(width, height);
