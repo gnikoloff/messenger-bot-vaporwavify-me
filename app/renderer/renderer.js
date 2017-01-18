@@ -1,8 +1,8 @@
 'use strict';
 const path = require('path');
 global.THREE = require('three');
-require(path.join(`${require.resolve('three')}', '../../../examples/js/renderers/Projector`));
-require(path.join(`${require.resolve('three')}', '../../../examples/js/renderers/CanvasRenderer`));
+require(path.join(`${require.resolve('three')}/../../../examples/js/renderers/Projector`));
+require(path.join(`${require.resolve('three')}/../../../examples/js/renderers/CanvasRenderer`));
 const Canvas = require('canvas-prebuilt');
 const fs = require("fs");
 
