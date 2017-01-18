@@ -31,7 +31,8 @@ const addSphere = (material) => {
 const init = (scene) => {
     wireMaterial = new THREE.MeshBasicMaterial({
         color: 0xf005ac,
-        wireframe: true
+        wireframe: true,
+        lineWidth: 5
     });
     material = new THREE.MeshBasicMaterial({
         color: 0x270e57
