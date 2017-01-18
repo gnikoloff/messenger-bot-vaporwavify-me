@@ -1,27 +1,38 @@
-const Terrain = (function () {
-    
-    
-    const vertexShader = ``;
-    const fragmentShader = ``;
+'use strict';
 
-    let geometry;
-    let material;
-    let mesh;
+const THREE = require('three');
 
-    const init = (scene) => {
-        geometry = new THREE.PlaneBufferGeometry(50, 50, 50, 50);
-        material = new THREE.ShaderMaterial({
-            vertexShader: vertexShader,
-            fragmentShader: 
-        });
-        // scene.add(mesh);
-    }
+let geometry;
+let material;
+let mesh;
+let texture;
 
-    return {
-        init
-    }
+let offsets = {
+    dist: 0.05 + Math.random() * 0.15,
+    zOffset: 3
+};
 
+const displaceVert = (v, i) => {
+    let dx = -v.x * offsets.dist;
+    let dy = -v.y * offsets.dist;
+    let dist = Math.sqrt(dx * dx + dy * dy);
+    v.z = Math.sin(dist) * 3;    
+}
 
-}());
+const init = (scene) => {
+    geometry = new THREE.PlaneGeometry(200, 200, 30, 30);
+    material = new THREE.MeshBasicMaterial({
+        color: 0xFF0000,
+        wireframe: true
+    });
+    mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(0, -40, 0);
+    mesh.geometry.vertices.forEach(displaceVert);
 
-// module.exports = Terrain;
+    scene.add(mesh);
+    return mesh;
+}
+
+module.exports = {
+    init
+}

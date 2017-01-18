@@ -1,50 +1,36 @@
 'use strict';
-
-const THREE = require('three');
-const SoftwareRenderer = require('three-software-renderer');
-const PNG = require('pngjs').PNG;
+const path = require('path');
+global.THREE = require('three');
+require(path.join(`${require.resolve('three')}../../../examples/js/renderers/Projector`));
+require(path.join(`${require.resolve('three')}../../../examples/js/renderers/CanvasRenderer`));
+const Canvas = require('canvas');
 const fs = require("fs");
+
+const terrain = require('./plane-terrain');
 
 let width  = 1024;
 let height = 768;
 
+const canvas = new Canvas(width, height);
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
-const renderer = new SoftwareRenderer({
-    alpha: false
-});
-renderer.setSize(width, height);
-renderer.setClearColor(0xFF0000)
 
-camera.position.z = 80;
+canvas.style = {};
+const renderer = new THREE.CanvasRenderer({
+    canvas: canvas
+});
+
+renderer.setSize(width, height);
+renderer.setClearColor(0xfff00f)
 camera.lookAt(scene.position);
 
-const box = new THREE.Mesh(
-    new THREE.PlaneGeometry(50, 50, 20, 20),
-    new THREE.MeshBasicMaterial({ color: 0xFFFF00, wireframe: true })
-);
-box.position.set(0,0,0);
-scene.add(box);
+terrain.init(scene);
 
 const renderFrame = (pos) => {
-    console.log(scene.children[0])
     camera.position.set(pos.x, pos.y, pos.z);
     camera.lookAt(scene.position);
-
-    let imageData = renderer.render(scene, camera);
-    
-    let png = new PNG({
-        width: width,
-        height: height,
-        filterType: -1
-    });
-
-    for (let i = 0; i < imageData.data.length; i += 1) {
-        png.data[i] = imageData.data[i];
-    }
-
-    return png;
-
+    renderer.render(scene, camera);
+    return canvas;
 }
 
 

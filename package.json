@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "canvas": "^1.6.2",
     "express": "^4.14.0",
+    "mock-browser": "^0.92.12",
     "nodemon": "^1.11.0",
     "pngjs": "^3.0.0",
     "three": "^0.83.0",
-    "three-software-renderer": "^1.2.0"
+    "three-png-stream": "^1.0.1"
   },
   "devDependencies": {},
   "scripts": {
