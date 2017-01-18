@@ -7,6 +7,8 @@ const Canvas = require('canvas');
 const fs = require("fs");
 
 const terrain = require('./plane-terrain');
+const particles = require('./particles');
+const photo = require('./photo');
 
 let width  = 1024;
 let height = 768;
@@ -21,10 +23,12 @@ const renderer = new THREE.CanvasRenderer({
 });
 
 renderer.setSize(width, height);
-renderer.setClearColor(0xfff00f)
+renderer.setClearColor(0x3a104b)
 camera.lookAt(scene.position);
 
 terrain.init(scene);
+particles.init(scene);
+photo.init(scene);
 
 const renderFrame = (pos) => {
     camera.position.set(pos.x, pos.y, pos.z);
