@@ -14,7 +14,7 @@ const renderer = new SoftwareRenderer({
     alpha: false
 });
 renderer.setSize(width, height);
-renderer.setClearColor(0xffffff)
+renderer.setClearColor(0xFF0000)
 
 camera.position.z = 80;
 camera.lookAt(scene.position);
