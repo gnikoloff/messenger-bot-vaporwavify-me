@@ -10,7 +10,7 @@ const terrain = require('./plane-terrain');
 const particles = require('./particles');
 const photo = require('./photo');
 
-let width  = 102h4;
+let width  = 1024;
 let height = 768;
 
 const canvas = new Canvas(width, height);
