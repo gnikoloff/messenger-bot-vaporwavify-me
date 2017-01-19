@@ -52,7 +52,7 @@ const sendImageMessage = (recipientId) => {
             x: 0, y: -120, z: 20 + Math.random() * 40
         })
         .pngStream()
-        pipe(fs.createWriteStream('export.png'));
+        .pipe(fs.createWriteStream('export.png'));
     
     //callSendAPI(messageData);
 
