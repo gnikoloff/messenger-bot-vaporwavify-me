@@ -59,6 +59,7 @@ const sendImageMessage = (recipientId, res) => {
     renderExport.on('end', () => {
         output.end();
         console.log('!!!! STREAM ENDED !!!!')
+        console.log(output)
     });
 
 }
