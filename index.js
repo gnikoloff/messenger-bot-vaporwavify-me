@@ -59,9 +59,9 @@ const sendImageMessage = (recipientId, res) => {
             output.write(chunk);
         });
         renderExport.on('end', () => {
-            output.end();
             console.log('!!!! STREAM ENDED !!!!')
             console.log(output.path)
+            output.end();
         });
     });
 }
