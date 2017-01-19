@@ -53,7 +53,7 @@ const sendImageMessage = (recipientId, res) => {
         })
         .pngStream();
     let output = fs.createWriteStream('test.jpg');
-    output.on('open', (fd) => {
+    output.once('open', (fd) => {
         console.log('OUTPUT FILE OPENED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         renderExport.on('data', (chunk) => {
             output.write(chunk);
