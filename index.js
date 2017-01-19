@@ -46,7 +46,7 @@ const sendTextMessage = (recipientId, messageText) => {
 }
 
 const sendImageMessage = (recipientId) => {
-    const messageData {
+    const messageData = {
         recipient: {
             id: recipientId
         },
