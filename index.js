@@ -80,7 +80,7 @@ app.route('/webhook/').get((req, res) => {
     res.send('No entry');
 })
 
-app.route('/webhook').post((req, res) => {
+app.route('/webhook/').post((req, res) => {
   let data = req.body;
   // Make sure this is a page subscription
   if (data.object === 'page') {
