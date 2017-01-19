@@ -83,8 +83,9 @@ app.route('/webhook/').get((req, res) => {
     res.send('No entry');
 })
 
-app.route('/webhook/').post((req, res) => {
+app.route('/webhook').post((req, res) => {
   let data = req.body;
+  console.log(req.body);
   // Make sure this is a page subscription
   if (data.object === 'page') {
     // Iterate over each entry - there may be multiple if batched
