@@ -45,39 +45,33 @@ const sendTextMessage = (recipientId, messageText) => {
   callSendAPI(messageData);
 }
 
-const sendImageMessage = (recipientId) => {
+const sendImageMessage = (recipientId, res) => {
     
     let renderExport = renderer
         .renderFrame({
             x: 0, y: -120, z: 20 + Math.random() * 40
         })
         .pngStream();
-    
-    //renderExport.on('data', (chunk) => {
-    //    imgData += chunk;
-    //});
-    var output = fs.createWriteStream('image.png')
-    renderExport.pipe(output)
-    
+    let output = fs.createWriteStream('export.png');
+    renderExport.pipe(output);
+    output.on('finish', () => {
+        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
+        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
         
-        let messageData = {
-            recipient: {
-                id: recipientId
-            },
-            message: {
-                attachment: {
-                    type: "image",
-                    payload: {
-                        url: 'http://g01.a.alicdn.com/kf/HTB1rkJeKFXXXXbfXFXXq6xXFXXXV/Top-Selling-Adult-maple-skateboard-Deck.jpg'
-                    }
-                }
-            }
-        }
-        callSendAPI(messageData);
+        console.log('--------------------------------------------------------------')
+        console.log(output)
+        console.log('--------------------------------------------------------------')
+        
+        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
+        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
+        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
+
+    })
+
 
 }
 
-const receivedMessage = (event) => {
+const receivedMessage = (event, res) => {
   let senderID = event.sender.id;
   let recipientID = event.recipient.id;
   let timeOfMessage = event.timestamp;
@@ -105,7 +99,7 @@ const receivedMessage = (event) => {
           //});
           //res.writeHead(200, { 'Content-Type': 'image/png' });
           //renderExport.pngStream().pipe(res); 
-          sendImageMessage(senderID);
+          sendImageMessage(senderID, res);
       }
   } else if (messageText) {
     let response = 'yo yo yo yo';
@@ -146,7 +140,7 @@ app.route('/webhook').post((req, res) => {
       // Iterate over each messaging event
       entry.messaging.forEach((event) => {
         if (event.message) {
-          receivedMessage(event);
+          receivedMessage(event, res);
         } else {
           //console.log("Webhook received unknown event: ", event);
           console.log("Webhook received unknown event");
