@@ -47,17 +47,15 @@ const sendTextMessage = (recipientId, messageText) => {
 
 const sendImageMessage = (recipientId) => {
     let imageData = ``;
-    let renderExport = renderer.renderFrame({
-        x: 0, y: -120, z: 20 + Math.random() * 40
-    });
-    //renderExport.pngStream().pipe(res);
-    let img = ``;
-    console.log(`
-        --------------------------------------------
-            ${renderExport.pngStream().pipe(img)}
-        --------------------------------------------
-    `)
-    const messageData = {
+    let renderExport = renderer
+        .renderFrame({
+            x: 0, y: -120, z: 20 + Math.random() * 40
+        })
+        .renderExport
+        .pngStream();
+
+    let result = ``;
+    let messageData = {
         recipient: {
             id: recipientId
         },
@@ -65,12 +63,25 @@ const sendImageMessage = (recipientId) => {
             attachment: {
                 type: "image",
                 payload: {
-                    url: "http://www.defenders.org/sites/default/files/styles/large/public/tiger-dirk-freder-isp.jpg"
+                    url: ""
                 }
             }
         }
     }
-    callSendAPI(messageData);
+
+    renderExport.on('data', (chunk) => {
+        result += chunk;
+    });
+    renderExport.on('end', () => {
+        console.log(`
+            ----------------------------------------------
+                ${result}
+            ----------------------------------------------
+        `)
+        messageData.message.attachment.payload.url = result;
+        callSendAPI(messageData);
+    });
+
 }
 
 const receivedMessage = (event) => {
