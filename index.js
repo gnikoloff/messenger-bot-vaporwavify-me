@@ -83,7 +83,7 @@ const sendImageMessage = (recipientId) => {
             }
         }
         
-        //callSendAPI(messageData);
+        callSendAPI(messageData);
     })
     renderExport.pipe(stream);
     renderExport.on('end', stream.end);
