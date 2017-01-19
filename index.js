@@ -46,7 +46,7 @@ const sendTextMessage = (recipientId, messageText) => {
   callSendAPI(messageData);
 }
 
-const sendImageMessage = (recipientId, res) => {
+const sendImageMessage = (recipientId) => {
     
     let renderExport = renderer
         .renderFrame({
@@ -56,16 +56,27 @@ const sendImageMessage = (recipientId, res) => {
 
     let output = cloudinary.uploader.upload._stream((res) => { console.log(res) })
 
-    renderExport.on('data', (chunk) => {
-        output.write(chunk);
+    let stream = cloudinary.uploader.upload_stream((res) => {
+        console.log(res);
+        cloudinary.image(rs.public_id, {
+            format: 'png',
+            width: 600,
+            height: 400,
+            crop: 'fill'
+        }, {
+            public_id: recipientId
+        });
+    })
+    renderExport.on('data', () => {
+        stream.write();
     });
     renderExport.on('end', () => {
-        output.end();
+        stream.end();
     });
 
 }
 
-const receivedMessage = (event, res) => {
+const receivedMessage = (event) => {
   let senderID = event.sender.id;
   let recipientID = event.recipient.id;
   let timeOfMessage = event.timestamp;
@@ -134,7 +145,7 @@ app.route('/webhook').post((req, res) => {
       // Iterate over each messaging event
       entry.messaging.forEach((event) => {
         if (event.message) {
-          receivedMessage(event, res);
+          receivedMessage(event);
         } else {
           //console.log("Webhook received unknown event: ", event);
           console.log("Webhook received unknown event");
