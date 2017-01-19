@@ -47,17 +47,46 @@ const sendTextMessage = (recipientId, messageText) => {
 
 const sendImageMessage = (recipientId) => {
     let imageData = ``;
-    let tempFile = fs.createWriteStream('./exports/export.png');
     let renderExport = renderer
         .renderFrame({
             x: 0, y: -120, z: 20 + Math.random() * 40
-        });
-    rendererExport.pngStream(tempFile);
-    rendererExport.on('end', () => {
-        console.log(tempFile)
+        })
+        .pngStream();
+    let imgData = ``;
+
+    renderExport.on('data', (chunk) => {
+        imgData += chunk;
     });
-    
-    //callSendAPI(messageData);
+    renderExport.on('end', () => {
+        
+        console.log(`
+            ------------------------------------
+                ${renderExport}
+            ------------------------------------
+
+            000 111 222 333 444 555
+            
+            ------------------------------------
+                ${imgData.replace(/^data:image\/png;base64,/, "");}
+            ------------------------------------
+        `)
+    })
+
+    let messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: "image",
+                payload: {
+                    url: ""
+                }
+            }
+        }
+    }
+        callSendAPI(messageData);
+    });
 
 }
 
