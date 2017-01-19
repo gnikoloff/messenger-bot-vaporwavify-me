@@ -71,19 +71,19 @@ const sendImageMessage = (recipientId) => {
             ------------------------------------
         `)
 
-    let messageData = {
-        recipient: {
-            id: recipientId
-        },
-        message: {
-            attachment: {
-                type: "image",
-                payload: {
-                    url: ""
+        let messageData = {
+            recipient: {
+                id: recipientId
+            },
+            message: {
+                attachment: {
+                    type: "image",
+                    payload: {
+                        url: imgData
+                    }
                 }
             }
         }
-    }
         callSendAPI(messageData);
     });
 
