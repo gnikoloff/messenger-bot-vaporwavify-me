@@ -66,6 +66,15 @@ const sendImageMessage = (recipientId) => {
         }, {
             public_id: recipientId
         });
+        console.log(`
+            -----------------------
+            -----------
+            ---------
+                ${res.public_id}
+            --------
+            -----------
+            ----------------------
+        `)
         let messageData = {
             recipient: {
                 id: recipientId
@@ -79,6 +88,7 @@ const sendImageMessage = (recipientId) => {
                } 
             }
         }
+        
         callSendAPI(messageData);
     })
     renderExport.pipe(stream);
