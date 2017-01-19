@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+const request = require('request');
+
 const renderer = require('./app/renderer/renderer');
 
 const PORT = process.env.PORT || 1201;
