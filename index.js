@@ -70,7 +70,6 @@ const sendImageMessage = (recipientId) => {
                 ${imgData.replace(/^data:image\/png;base64,/, "")}
             ------------------------------------
         `)
-    })
 
     let messageData = {
         recipient: {
