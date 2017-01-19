@@ -14,7 +14,9 @@
     "nodemon": "^1.11.0",
     "pngjs": "^3.0.0",
     "three": "^0.83.0",
-    "three-png-stream": "^1.0.1"
+    "three-obj-loader": "git+https://git@github.com/sohamkamani/three-object-loader.git",
+    "three-png-stream": "^1.0.1",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "node-gyp": "^3.5.0"

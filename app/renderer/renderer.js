@@ -1,5 +1,6 @@
 'use strict';
 const path = require('path');
+global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 global.THREE = require('three');
 require(path.join(`${require.resolve('three')}/../../examples/js/renderers/Projector`));
 require(path.join(`${require.resolve('three')}/../../examples/js/renderers/CanvasRenderer`));
@@ -9,6 +10,7 @@ const fs = require("fs");
 const terrain = require('./plane-terrain');
 const particles = require('./particles');
 const photo = require('./photo');
+const dolphin = require('./dolphin');
 
 let width  = 1024;
 let height = 768;
@@ -29,6 +31,7 @@ camera.lookAt(scene.position);
 terrain.init(scene);
 particles.init(scene);
 photo.init(scene);
+dolphin.init(scene);
 
 const renderFrame = (pos) => {
     camera.position.set(pos.x, pos.y, pos.z);
