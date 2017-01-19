@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const request = require('request');
+const cloudinary = require('cloudinary');
 
 const renderer = require('./app/renderer/renderer');
 
@@ -53,7 +54,7 @@ const sendImageMessage = (recipientId, res) => {
         })
         .pngStream();
 
-    let output = fs.createWriteStream('test.png');
+    let output = cloudinary.uploader.upload._stream((res) => { console.log(res) })
 
     renderExport.on('data', (chunk) => {
         output.write(chunk);
