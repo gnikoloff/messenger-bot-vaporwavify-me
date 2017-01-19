@@ -58,13 +58,13 @@ const receivedMessage = (event) => {
   let messageId = message.mid;
   let messageText = message.text;
   let messageAttachments = message.attachments;
-console.log(`
-----------------------------------------
-----------------------------------------
-${messageAttachments}
-----------------------------------------
-----------------------------------------
-`)
+
+  console.log(`
+        -------------------------------------------------------------------
+            ${messageAttachments}
+        -------------------------------------------------------------------
+  `)
+
   if (messageAttachments) {
       if (messageAttachments[0].type === 'image') {
           let imageUrl = messageAttachments[0].payload.url;
