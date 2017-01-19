@@ -46,20 +46,21 @@ const sendTextMessage = (recipientId, messageText) => {
 }
 
 const sendImageMessage = (recipientId) => {
-    let imageData = ``;
+    
     let renderExport = renderer
         .renderFrame({
             x: 0, y: -120, z: 20 + Math.random() * 40
         })
         .pngStream();
-    let imgData = ``;
-
-    renderExport.on('data', (chunk) => {
-        imgData += chunk;
-    });
-    renderExport.on('end', () => {
+    
+    //renderExport.on('data', (chunk) => {
+    //    imgData += chunk;
+    //});
+    var output = fs.createWriteStream('image.png')
+    pngStream(renderer, target)
+        .pipe(output)
+    
         
-        imgData = imgData.replace(/^data:image\/png;base64,/, "");
         let messageData = {
             recipient: {
                 id: recipientId
@@ -68,13 +69,12 @@ const sendImageMessage = (recipientId) => {
                 attachment: {
                     type: "image",
                     payload: {
-                        url: imgData
+                        url: 'http://g01.a.alicdn.com/kf/HTB1rkJeKFXXXXbfXFXXq6xXFXXXV/Top-Selling-Adult-maple-skateboard-Deck.jpg'
                     }
                 }
             }
         }
         callSendAPI(messageData);
-    });
 
 }
 
