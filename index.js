@@ -57,8 +57,7 @@ const sendImageMessage = (recipientId) => {
     //    imgData += chunk;
     //});
     var output = fs.createWriteStream('image.png')
-    pngStream(renderer, target)
-        .pipe(output)
+    renderExport.pipe(output)
     
         
         let messageData = {
