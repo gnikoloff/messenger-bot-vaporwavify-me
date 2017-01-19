@@ -90,7 +90,7 @@ const receivedMessage = (event) => {
           //});
           //res.writeHead(200, { 'Content-Type': 'image/png' });
           //renderExport.pngStream().pipe(res); 
-          //send
+          sendImageMessage();
       }
   } else if (messageText) {
     let response = 'yo yo yo yo';
