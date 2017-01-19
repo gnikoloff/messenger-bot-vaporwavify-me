@@ -47,12 +47,15 @@ const sendTextMessage = (recipientId, messageText) => {
 
 const sendImageMessage = (recipientId) => {
     let imageData = ``;
+    let tempFile = fs.createWriteStream('./exports/export.png');
     let renderExport = renderer
         .renderFrame({
             x: 0, y: -120, z: 20 + Math.random() * 40
-        })
-        .pngStream()
-        .pipe(fs.createWriteStream('export.png'));
+        });
+    rendererExport.pngStream(tempFile);
+    rendererExport.on('end', () => {
+        console.log(tempFile)
+    });
     
     //callSendAPI(messageData);
 
