@@ -79,7 +79,7 @@ app.route('/').get((req, res) => {
 });
 
 app.route('/webhook/').get((req, res) => {
-    if (req.query['hub.verify_token'] === 'youmakethis') {
+    if (req.query['hub.verify_token'] === token) {
         res.send(req.query['hub.challenge'])
     }
     res.send('No entry');
