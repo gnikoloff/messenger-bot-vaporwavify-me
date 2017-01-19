@@ -45,6 +45,23 @@ const sendTextMessage = (recipientId, messageText) => {
   callSendAPI(messageData);
 }
 
+const sendImageMessage = (recipientId) {
+    const messageData {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: "image",
+                payload: {
+                    url: "http://www.defenders.org/sites/default/files/styles/large/public/tiger-dirk-freder-isp.jpg"
+                }
+            }
+        }
+    }
+    callSendAPI(messageData);
+}
+
 const receivedMessage = (event) => {
   let senderID = event.sender.id;
   let recipientID = event.recipient.id;
@@ -68,11 +85,14 @@ const receivedMessage = (event) => {
   if (messageAttachments) {
       if (messageAttachments[0].type === 'image') {
           let imageUrl = messageAttachments[0].payload.url;
-          console.log(imageUrl)
+          let renderExport = renderer.renderFrame({
+                x: 0, y: -120, z: 20 + Math.random() * 40
+          });
+          res.writeHead(200, { 'Content-Type': 'image/png' });
+          renderExport.pngStream().pipe(res); 
+          send
       }
-  }
-
-  if (messageText) {
+  } else if (messageText) {
     let response = 'yo yo yo yo';
     sendTextMessage(senderID, response);
   }
