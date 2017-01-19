@@ -51,29 +51,10 @@ const sendImageMessage = (recipientId) => {
         .renderFrame({
             x: 0, y: -120, z: 20 + Math.random() * 40
         })
-        .pngStream();
-
-    let result = ``;
-
-    renderExport.on('data', (chunk) => {
-        result += chunk;
-    });
-    renderExport.on('end', () => {        
-        let messageData = {
-            recipient: {
-                id: recipientId
-            },
-            message: {
-                attachment: {
-                    type: "image",
-                    payload: {
-                        url: result
-                    }
-                }
-            }
-        }
-        callSendAPI(messageData);
-    });
+        .pngStream()
+        pipe(fs.createWriteStream('export.png'));
+    
+    //callSendAPI(messageData);
 
 }
 
