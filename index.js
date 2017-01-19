@@ -67,8 +67,8 @@ const sendImageMessage = (recipientId) => {
             public_id: recipientId
         });
     })
-    renderExport.on('data', stream.write;
-    renderExport.on('end', stream.end;
+    renderExport.on('data', stream.write);
+    renderExport.on('end', stream.end);
 
 }
 
