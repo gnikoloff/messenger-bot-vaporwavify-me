@@ -68,7 +68,7 @@ const sendImageMessage = (recipientId) => {
         });
         let regex = /<img.*?src='(.*?)'/;
         let src = regex.exec(image)[1]
-        
+        console.log(src)
         let messageData = {
             recipient: {
                 id: recipientId
