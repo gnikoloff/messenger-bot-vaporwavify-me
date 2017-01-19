@@ -70,14 +70,10 @@ const sendImageMessage = (recipientId) => {
 
     renderExport.on('data', (chunk) => {
         result += chunk;
+        fs.createWriteStream('logo.png');
     });
     renderExport.on('end', () => {
-        console.log(`
-            ----------------------------------------------
-                ${result}
-            ----------------------------------------------
-        `)
-        messageData.message.attachment.payload.url = result;
+        messageData.messega.attachment.payload.url = `${__dirname}/logo.png`
         callSendAPI(messageData);
     });
 
