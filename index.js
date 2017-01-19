@@ -59,18 +59,7 @@ const sendImageMessage = (recipientId) => {
     });
     renderExport.on('end', () => {
         
-        console.log(`
-            ------------------------------------
-                ${renderExport}
-            ------------------------------------
-
-            000 111 222 333 444 555
-            
-            ------------------------------------
-                ${imgData.replace(/^data:image\/png;base64,/, "")}
-            ------------------------------------
-        `)
-
+        imgData = imgData.replace(/^data:image\/png;base64,/, "");
         let messageData = {
             recipient: {
                 id: recipientId
