@@ -11,6 +11,7 @@ const terrain = require('./plane-terrain');
 const particles = require('./particles');
 const photo = require('./photo');
 const dolphin = require('./dolphin');
+const background = require('./background');
 
 let width  = 1024;
 let height = 768;
@@ -32,6 +33,7 @@ terrain.init(scene);
 particles.init(scene);
 photo.init(scene);
 dolphin.init(scene);
+background.init(scene);
 
 const renderFrame = (pos) => {
     camera.position.set(pos.x, pos.y, pos.z);

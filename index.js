@@ -9,6 +9,60 @@ const PORT = process.env.PORT || 1201;
 const token = process.env.FB_VERIFY_TOKEN;
 const access = process.env.FB_ACCESS_TOKEN;
 
+const callSendAPI = (messageData) => {
+  request({
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: { access_token: access },
+    method: 'POST',
+    json: messageData
+  }, (error, response, body) => {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
+
+      console.log("Successfully sent generic message with id %s to recipient %s", 
+        messageId, recipientId);
+    } else {
+      console.error("Unable to send message.");
+      console.error(response);
+      console.error(error);
+    }
+  });  
+}
+
+const sendTextMessage = (recipientId, messageText) => {
+  const messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: messageText
+    }
+  };
+  callSendAPI(messageData);
+}
+
+const receivedMessage = (event) => {
+  let senderID = event.sender.id;
+  let recipientID = event.recipient.id;
+  let timeOfMessage = event.timestamp;
+  let message = event.message;
+
+  console.log("Received message for user %d and page %d at %d with message:", 
+    senderID, recipientID, timeOfMessage);
+  console.log(JSON.stringify(message));
+
+  let messageId = message.mid;
+  let messageText = message.text;
+  let messageAttachments = message.attachments;
+
+  if (messageText) {
+    let response = 'yo yo yo yo';
+    sendTextMessage(senderID, responseMessange);
+  }
+
+}
+
 app.use(express.static('app'));
 
 app.route('/').get((req, res) => {
@@ -25,5 +79,33 @@ app.route('/webhook/').get((req, res) => {
     }
     res.send('No entry');
 })
+
+app.route('/webhook').post((req, res) => {
+  let data = req.body;
+  // Make sure this is a page subscription
+  if (data.object === 'page') {
+    // Iterate over each entry - there may be multiple if batched
+    data.entry.forEach(function(entry) {
+      let pageID = entry.id;
+      let timeOfEvent = entry.time;
+
+      // Iterate over each messaging event
+      entry.messaging.forEach((event) => {
+        if (event.message) {
+          receivedMessage(event);
+        } else {
+          console.log("Webhook received unknown event: ", event);
+        }
+      });
+    });
+
+    // Assume all went well.
+    //
+    // You must send back a 200, within 20 seconds, to let us know
+    // you've successfully received the callback. Otherwise, the request
+    // will time out and we will keep trying to resend.
+    res.sendStatus(200);
+  }
+});
 
 app.listen(PORT, () => { console.log(`App is listening on ${PORT}`) });
