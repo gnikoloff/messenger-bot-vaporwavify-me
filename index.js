@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
+const fs = require('fs');
 const request = require('request');
 
 const renderer = require('./app/renderer/renderer');
