@@ -52,23 +52,8 @@ const sendImageMessage = (recipientId, res) => {
             x: 0, y: -120, z: 20 + Math.random() * 40
         })
         .pngStream();
-    let output = fs.createWriteStream('export.png');
-    output.on('open', (fd) => {
-        renderExport.on('data', (chunk) => {
-            output.write(chunk);
-        });
-        renderExport.on('end', () => {
-            output.end();
-            console.log(`
-                -------------------------------------------
-                -------------------------------------------
-                -------------------------------------------
-                    ${output.path}
-                -------------------------------------------
-                -------------------------------------------
-                -------------------------------------------
-            `)
-        })
+    renderExport.on('data', (chunk) => {
+        console.log('data received, yo')
     });
 
 }
