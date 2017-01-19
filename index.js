@@ -66,7 +66,18 @@ const sendImageMessage = (recipientId) => {
         }, {
             public_id: recipientId
         });
-        console.log(image)
+        let messageData = {
+            recipient: recipientId,
+            message: {
+               attachment: {
+                   type: 'image',
+                   payload: {
+                       url: image
+                   }
+               } 
+            }
+        }
+        callSendAPI(messageData);
     })
     renderExport.pipe(stream);
     renderExport.on('end', stream.end);
