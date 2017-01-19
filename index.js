@@ -53,21 +53,23 @@ const sendImageMessage = (recipientId, res) => {
         })
         .pngStream();
     let output = fs.createWriteStream('export.png');
-    renderExport.pipe(output);
-    output.on('finish', () => {
-        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
-        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
-        
-        console.log('--------------------------------------------------------------')
-        console.log(output)
-        console.log('--------------------------------------------------------------')
-        
-        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
-        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
-        console.log('OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT ')
-
-    })
-
+    output.on('open', (fd) => {
+        renderExport.on('data', (chunk) => {
+            output.write(chunk);
+        });
+        renderExport.on('end', () => {
+            output.end();
+            console.log(`
+                -------------------------------------------
+                -------------------------------------------
+                -------------------------------------------
+                    ${output.path}
+                -------------------------------------------
+                -------------------------------------------
+                -------------------------------------------
+            `)
+        })
+    });
 
 }
 
