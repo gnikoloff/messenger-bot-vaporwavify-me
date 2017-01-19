@@ -67,7 +67,9 @@ const sendImageMessage = (recipientId) => {
             public_id: recipientId
         });
         let messageData = {
-            recipient: recipientId,
+            recipient: {
+                id: recipientId
+            },
             message: {
                attachment: {
                    type: 'image',
