@@ -50,10 +50,10 @@ const sendImageMessage = (recipientId) => {
     let renderExport = renderer.renderFrame({
         x: 0, y: -120, z: 20 + Math.random() * 40
     });
-    
+    renderExport.pngStream().pipe(res);
     console.log(`
         --------------------------------------------
-            ${renderExport.pack()}
+            ${renderExport.pngStream()}
         --------------------------------------------
     `)
     const messageData = {
