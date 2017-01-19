@@ -54,7 +54,7 @@ const sendImageMessage = (recipientId) => {
         })
         .pngStream();
 
-    let output = cloudinary.uploader.upload._stream((res) => { console.log(res) })
+    let output = cloudinary.uploader.upload_stream((res) => { console.log(res) })
 
     let stream = cloudinary.uploader.upload_stream((res) => {
         console.log(res);
