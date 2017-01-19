@@ -67,7 +67,7 @@ const sendImageMessage = (recipientId) => {
             000 111 222 333 444 555
             
             ------------------------------------
-                ${imgData.replace(/^data:image\/png;base64,/, "");}
+                ${imgData.replace(/^data:image\/png;base64,/, "")}
             ------------------------------------
         `)
     })
