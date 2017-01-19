@@ -53,15 +53,17 @@ const sendImageMessage = (recipientId, res) => {
         })
         .pngStream();
     let output = fs.createWriteStream('test.jpg');
-    renderExport.on('data', (chunk) => {
-        output.write(chunk);
+    output.on('open', (fd) => {
+        console.log('OUTPUT FILE OPENED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        renderExport.on('data', (chunk) => {
+            output.write(chunk);
+        });
+        renderExport.on('end', () => {
+            output.end();
+            console.log('!!!! STREAM ENDED !!!!')
+            console.log(output)
+        });
     });
-    renderExport.on('end', () => {
-        output.end();
-        console.log('!!!! STREAM ENDED !!!!')
-        console.log(output)
-    });
-
 }
 
 const receivedMessage = (event, res) => {
