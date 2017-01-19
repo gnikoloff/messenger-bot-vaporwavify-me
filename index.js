@@ -59,7 +59,7 @@ const receivedMessage = (event) => {
 
   if (messageText) {
     let response = 'yo yo yo yo';
-    sendTextMessage(senderID, responseMessange);
+    sendTextMessage(senderID, response);
   }
 
 }
