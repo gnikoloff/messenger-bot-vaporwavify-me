@@ -58,7 +58,11 @@ const receivedMessage = (event) => {
   let messageId = message.mid;
   let messageText = message.text;
   let messageAttachments = message.attachments;
-
+console.log(`
+----------------------------------------
+${messageAttachments}
+--------------------------------------
+`)
   if (messageAttachments) {
       if (messageAttachments[0].type === 'image') {
           let imageUrl = messageAttachments[0].payload.url;
@@ -104,12 +108,6 @@ app.route('/webhook').post((req, res) => {
 
       // Iterate over each messaging event
       entry.messaging.forEach((event) => {
-          console.log(`
-          ---------------------------------------------------------
-          ${event}
-          ---------------------------------------------------------
-          ${event.attachments}
-          `)
         if (event.message) {
           receivedMessage(event);
         } else {
