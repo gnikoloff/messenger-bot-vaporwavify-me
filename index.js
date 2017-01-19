@@ -54,26 +54,24 @@ const sendImageMessage = (recipientId) => {
         .pngStream();
 
     let result = ``;
-    let messageData = {
-        recipient: {
-            id: recipientId
-        },
-        message: {
-            attachment: {
-                type: "image",
-                payload: {
-                    url: ""
-                }
-            }
-        }
-    }
 
     renderExport.on('data', (chunk) => {
         result += chunk;
-        fs.createWriteStream('logo.png');
     });
-    renderExport.on('end', () => {
-        messageData.messega.attachment.payload.url = `${__dirname}/logo.png`
+    renderExport.on('end', () => {        
+        let messageData = {
+            recipient: {
+                id: recipientId
+            },
+            message: {
+                attachment: {
+                    type: "image",
+                    payload: {
+                        url: result
+                    }
+                }
+            }
+        }
         callSendAPI(messageData);
     });
 
