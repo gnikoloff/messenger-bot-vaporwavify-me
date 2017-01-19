@@ -2,6 +2,7 @@
 
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 const renderer = require('./app/renderer/renderer');
 
@@ -63,6 +64,8 @@ const receivedMessage = (event) => {
 
 }
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static('app'));
 
 app.route('/').get((req, res) => {

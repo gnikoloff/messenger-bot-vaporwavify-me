@@ -8,6 +8,7 @@
     "npm": "4.1.1"
   },
   "dependencies": {
+    "body-parser": "^1.16.0",
     "canvas-prebuilt": "1.6.0",
     "express": "^4.14.0",
     "mock-browser": "^0.92.12",
