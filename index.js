@@ -45,7 +45,7 @@ const sendTextMessage = (recipientId, messageText) => {
   callSendAPI(messageData);
 }
 
-const sendImageMessage = (recipientId) {
+const sendImageMessage = (recipientId) => {
     const messageData {
         recipient: {
             id: recipientId
