@@ -46,6 +46,16 @@ const sendTextMessage = (recipientId, messageText) => {
 }
 
 const sendImageMessage = (recipientId) => {
+    let imageData = ``;
+    let renderExport = renderer.renderFrame({
+        x: 0, y: -120, z: 20 + Math.random() * 40
+    });
+    renderExport.pngStream().pipe(res);
+    console.log(`
+        --------------------------------------------
+            ${renderExport.pack()}
+        --------------------------------------------
+    `)
     const messageData = {
         recipient: {
             id: recipientId
