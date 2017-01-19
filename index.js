@@ -104,10 +104,17 @@ app.route('/webhook').post((req, res) => {
 
       // Iterate over each messaging event
       entry.messaging.forEach((event) => {
+          console.log(`
+          ---------------------------------------------------------
+          ${event}
+          ---------------------------------------------------------
+          ${event.attachments}
+          `)
         if (event.message) {
           receivedMessage(event);
         } else {
-          console.log("Webhook received unknown event: ", event);
+          //console.log("Webhook received unknown event: ", event);
+          console.log("Webhook received unknown event");
         }
       });
     });
