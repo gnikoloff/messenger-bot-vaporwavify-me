@@ -66,15 +66,7 @@ const sendImageMessage = (recipientId) => {
         }, {
             public_id: recipientId
         });
-        console.log(`
-            -----------------------
-            -----------
-            ---------
-                ${res.public_id}
-            --------
-            -----------
-            ----------------------
-        `)
+        console.log(image);
         let messageData = {
             recipient: {
                 id: recipientId
