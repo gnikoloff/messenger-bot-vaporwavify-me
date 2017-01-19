@@ -60,8 +60,8 @@ const sendImageMessage = (recipientId) => {
         //console.log(res);
         let image = cloudinary.image(res.public_id, {
             format: 'png',
-            width: 600,
-            height: 400,
+            width: 470,
+            height: 410,
             crop: 'fill'
         }, {
             public_id: recipientId

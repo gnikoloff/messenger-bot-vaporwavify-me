@@ -13,8 +13,8 @@ const photo = require('./photo');
 const dolphin = require('./dolphin');
 const background = require('./background');
 
-let width  = 1024;
-let height = 768;
+let width  = 780;
+let height = 410;
 
 const canvas = new Canvas(width, height);
 const scene = new THREE.Scene();
