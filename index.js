@@ -59,6 +59,13 @@ const receivedMessage = (event) => {
   let messageText = message.text;
   let messageAttachments = message.attachments;
 
+  if (messageAttachments) {
+      if (messageAttachments[0].type === 'image') {
+          let imageUrl = messageAttachments[0].payload.url;
+          console.log(imageUrl)
+      }
+  }
+
   if (messageText) {
     let response = 'yo yo yo yo';
     sendTextMessage(senderID, response);
