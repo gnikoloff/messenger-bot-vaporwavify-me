@@ -25,7 +25,7 @@ const init = (scene) => {
     material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
     mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(0, 0, 0);
-    mesh.rotation.x += Math.PI / 2.5;
+    //mesh.rotation.x += Math.PI / 2.5;
     group.add(mesh);
 
     triangleGeometry = new THREE.Geometry();
