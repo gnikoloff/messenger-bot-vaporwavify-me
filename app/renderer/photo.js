@@ -56,7 +56,8 @@ const addTexture = (imageUrl) => {
         method: 'GET'
     }, (error, response, body) => {
         body = new THREE.Texture(body);
-        console.log(response)
+        mesh.material.needsUpdate = true;
+        mesh.material.map = body;
     });
 }
 
