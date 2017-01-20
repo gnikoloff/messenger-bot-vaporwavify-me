@@ -55,9 +55,13 @@ const addTexture = (imageUrl) => {
         if (!err && res.statusCode == 200) {
             data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(data).toString('base64');
             
-                mesh.material.map = new THREE.Texture(data);
+            let image = new Canvas.Image();
+            image.onload = () => {
+                console.log('img loaded loaded loaded loaded')
+                mesh.material.map = new THREE.Texture(image);
                 mesh.material.needsUpdate = true;
-            
+            }
+            image.src = data;
         }
     });
     //request({
