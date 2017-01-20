@@ -1,7 +1,7 @@
 'use strict';
 
 global.document = {
-  createElement: function (tag) {
+  createElementNS: function (tag) {
     if (tag === "img") {
       return new Canvas.Image();
     }
