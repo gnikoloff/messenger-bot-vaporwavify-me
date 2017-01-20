@@ -52,7 +52,7 @@ const init = (scene) => {
 
 const addTexture = (imageUrl) => {
     request.get(imageUrl, (err, res, buffer) => {
-        console.log(buffer)
+        console.log(typeof buffer + '````````````````````````````')
     });
     //request({
     //    uri: imageUrl,
