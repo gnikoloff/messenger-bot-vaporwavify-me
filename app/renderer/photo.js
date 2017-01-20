@@ -1,10 +1,10 @@
 'use strict';
-const events = require('events');
+
 var jsdom = require("jsdom").jsdom;
 global.document = jsdom("<!doctype html><html><head></head><body></body></html>");
 global.window = document.defaultView;
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-const request = require('request');
+
 const THREE = require('three');
 
 let group;
@@ -17,12 +17,10 @@ let triangleGeometry;
 let triangleMaterial;
 let triangleMesh;
 
-let eventEmitter = new events.EventEmitter();
-
 const init = (scene) => {
     group = new THREE.Group();
     geometry = new THREE.PlaneGeometry(25, 30, 2, 2);
-    material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
+    material = new THREE.MeshBasicMaterial({ color: 0xFF0000 });
     mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(0, 0, 0);
     mesh.rotation.x += Math.PI / 2.5;
@@ -51,14 +49,13 @@ const init = (scene) => {
 }
 
 const addTexture = (imageUrl) => {
-    request({
-        uri: imageUrl,
-        method: 'GET'
-    }, (error, response, body) => {
-        body = new THREE.Texture(body);
-        mesh.material.map = body;
-        mesh.material.needsUpdate = true;
-    });
+    let loader = new THREE.TextureLoader();
+    loader.load(
+        imageUrl,
+        (texture) => {
+            mesh.material.map = texture;
+        }
+    )
 }
 
 module.exports = {
