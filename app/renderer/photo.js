@@ -53,7 +53,7 @@ const init = (scene) => {
 const addTexture = (imageUrl) => {
     request.get(imageUrl, (err, res, data) => {
         if (!err && res.statusCode == 200) {
-            mesh.material.color.setRGB(0xFF00F0);
+            mesh.material.color.setHex(0xFF00F0);
             mesh.material.needsUpdate = true;
         }
     });
