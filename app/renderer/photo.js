@@ -1,10 +1,10 @@
 'use strict';
 
 var jsdom = require("jsdom").jsdom;
-global.document = jsdom("<html><head></head><body></body></html>");
+global.document = jsdom("<!doctype html><html><head></head><body></body></html>");
 global.window = document.defaultView;
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
+const request = require('request');
 const THREE = require('three');
 
 let group;
@@ -49,13 +49,12 @@ const init = (scene) => {
 }
 
 const addTexture = (imageUrl) => {
-    let loader = new THREE.TextureLoader();
-    loader.load(
-        imageUrl,
-        (texture) => {
-            mesh.material.map = texture;
-        }
-    )
+    request({
+        uri: imageUrl,
+        method: 'GET'
+    }, (error, response, body) => {
+        console.log(body);
+    });
 }
 
 module.exports = {
