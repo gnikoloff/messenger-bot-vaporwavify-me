@@ -53,7 +53,8 @@ const addTexture = (imageUrl) => {
         uri: imageUrl,
         method: 'GET'
     }, (error, response, body) => {
-        console.log(body);
+        body = new THREE.Texture(body);
+        console.log(body)
     });
 }
 
