@@ -3,7 +3,7 @@
 var jsdom = require("jsdom").jsdom;
 global.document = jsdom("<!doctype html><html><head></head><body></body></html>");
 global.window = document.defaultView;
-global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+global.XMLHttpRequest = require('xhr2');
 
 const THREE = require('three');
 
