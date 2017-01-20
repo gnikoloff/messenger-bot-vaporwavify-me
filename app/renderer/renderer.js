@@ -38,7 +38,11 @@ background.init(scene);
 const renderFrame = (props) => {
     let { x: cameraX, y: cameraY, z: cameraZ } = props.pos;
     let { imageUrl } = props;
-    
+    console.log(`
+        ------------------------
+            ${imageUrl}
+        -----------------------
+    `)
     camera.position.set(cameraX, cameraY, cameraZ);
     camera.lookAt(scene.position);
     renderer.render(scene, camera);
