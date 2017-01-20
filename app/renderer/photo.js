@@ -57,6 +57,9 @@ const addTexture = (imageUrl) => {
         url: imageUrl,
         resourceLoader: (res, cb) => {
             console.log(res)
+        },
+        done: (res) => {
+            console.log(res)
         }
     })
 
