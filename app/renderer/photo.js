@@ -51,16 +51,18 @@ const init = (scene) => {
 }
 
 const addTexture = (imageUrl) => {
-    console.log(imageUrl)
-    request({
-        uri: imageUrl,
-        method: 'GET'
-    }, (err, res, body) => {
-        let image = new Canvas.Image();
-        image.src = body;
-        mesh.material.map = new THREE.Texture(image);
-        mesh.material.needsUpdate = true;
+    request.get(imageUrl, (err, res, buffer) => {
+        console.log(buffer)
     });
+    //request({
+    //    uri: imageUrl,
+    //    method: 'GET'
+    //}, (err, res, body) => {
+    //    let image = new Canvas.Image();
+    //    image.src = body;
+    //    mesh.material.map = new THREE.Texture(image);
+    //    mesh.material.needsUpdate = true;
+    //});
 }
 
 module.exports = {
