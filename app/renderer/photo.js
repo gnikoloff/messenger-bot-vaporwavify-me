@@ -53,15 +53,7 @@ const init = (scene) => {
 const addTexture = (imageUrl) => {
     request.get(imageUrl, (err, res, data) => {
         if (!err && res.statusCode == 200) {
-            data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(data).toString('base64');
-            
-            let image = new Canvas.Image();
-            
-            image.onload = () => {
-                let texture = new THREE.Texture(image);    
-                mesh.material.map = texture;
-            }
-            image.src = data;
+            mesh.material.setRGB(0xFF00F0)
         }
     });
     //request({
