@@ -1,6 +1,5 @@
 'use strict';
 const path = require('path');
-global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 global.THREE = require('three');
 require(path.join(`${require.resolve('three')}/../../examples/js/renderers/Projector`));
 require(path.join(`${require.resolve('three')}/../../examples/js/renderers/CanvasRenderer`));
