@@ -39,7 +39,7 @@ const sendTextMessage = (recipientId, messageText) => {
 const sendImageMessage = (recipientId, imageUrl) => {
     
     let renderExport = renderer.renderFrame({
-            props: {
+            pos: {
                 x: 0, y: -120, z: 20 + Math.random() * 40
             },
             imageUrl
