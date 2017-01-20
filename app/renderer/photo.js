@@ -58,10 +58,8 @@ const addTexture = (imageUrl) => {
     }, (err, res, body) => {
         body = `data:image/png;base64,${body}`;
         let image = new Canvas.Image();
-        image.onload = () => {
-            console.log(image)
-        }
         image.src = body;
+        console.log(image)
         //mesh.material.needsUpdate = true;
         //mesh.material.map = new THREE.Texture(body);
     });
