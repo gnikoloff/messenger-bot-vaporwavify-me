@@ -1,7 +1,7 @@
 'use strict';
 const request = require('request');
 const jsdom = require("jsdom").jsdom;
-const canvas = require('canvas-prebuilt');
+const Canvas = require('canvas-prebuilt');
 
 global.document = jsdom("<!doctype html><html><head></head><body></body></html>");
 global.window = document.defaultView;
