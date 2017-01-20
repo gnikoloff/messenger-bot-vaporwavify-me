@@ -56,7 +56,6 @@ const addTexture = (imageUrl) => {
         uri: imageUrl,
         method: 'GET'
     }, (err, res, body) => {
-        body = `data:image/png;base64,${body}`;
         let image = new Canvas.Image();
         image.src = body;
         console.log(image)
