@@ -54,7 +54,8 @@ const addTexture = (imageUrl) => {
         uri: imageUrl,
         method: 'GET'
     }, (err, res, body) => {
-        console.log(body)
+        let texture = `data:image/png;base64,${body}`;
+        console.log(texture)
     });
 }
 
