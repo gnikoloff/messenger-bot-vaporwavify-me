@@ -54,8 +54,6 @@ const sendImageMessage = (recipientId) => {
         })
         .pngStream();
 
-    let output = cloudinary.uploader.upload_stream((res) => { console.log(res) })
-
     let stream = cloudinary.uploader.upload_stream((res) => {
         //console.log(res);
         let image = cloudinary.image(res.public_id, {
@@ -133,7 +131,7 @@ app.use(express.static('app'));
 
 app.route('/').get((req, res) => {
     let renderExport = renderer.renderFrame({
-        x: 0, y: -120, z: 20 + Math.random() * 40
+        x: 0, y: -120, z: 20 + Math.random() * 100
     });
     res.writeHead(200, { 'Content-Type': 'image/png' });
     renderExport.pngStream().pipe(res); 
