@@ -1,6 +1,8 @@
 'use strict';
 const request = require('request');
-var jsdom = require("jsdom").jsdom;
+const jsdom = require("jsdom").jsdom;
+const canvas = require('canvas');
+
 global.document = jsdom("<!doctype html><html><head></head><body></body></html>");
 global.window = document.defaultView;
 global.XMLHttpRequest = require('xhr2');
@@ -49,14 +51,19 @@ const init = (scene) => {
 }
 
 const addTexture = (imageUrl) => {
-    let loader = new THREE.TextureLoader();
+    //let loader = new THREE.TextureLoader();
     request({
         uri: imageUrl,
         method: 'GET'
     }, (err, res, body) => {
         body = `data:image/png;base64,${body}`;
-        mesh.material.needsUpdate = true;
-        mesh.material.map = new THREE.Texture(body);
+        let image = new Canvas.Image();
+        image.onload = () => {
+            console.log(image)
+        }
+        image.src = imageUrl;
+        //mesh.material.needsUpdate = true;
+        //mesh.material.map = new THREE.Texture(body);
     });
 }
 
