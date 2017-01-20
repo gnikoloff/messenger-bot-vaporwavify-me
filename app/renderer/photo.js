@@ -1,8 +1,8 @@
 'use strict';
 
 var jsdom = require("jsdom").jsdom;
-var document = jsdom("<html><head></head><body></body></html>");
-var window = document.defaultView;
+global.document = jsdom("<html><head></head><body></body></html>");
+global.window = document.defaultView;
 
 const THREE = require('three');
 
