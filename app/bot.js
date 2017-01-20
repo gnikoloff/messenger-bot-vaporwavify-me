@@ -36,11 +36,13 @@ const sendTextMessage = (recipientId, messageText) => {
   callSendAPI(messageData);
 }
 
-const sendImageMessage = (recipientId) => {
+const sendImageMessage = (recipientId, imageUrl) => {
     
-    let renderExport = renderer
-        .renderFrame({
-            x: 0, y: -120, z: 20 + Math.random() * 40
+    let renderExport = renderer.renderFrame({
+            props: {
+                x: 0, y: -120, z: 20 + Math.random() * 40
+            },
+            imageUrl
         }).pngStream();
 
     let stream = cloudinary.uploader.upload_stream((res) => {
@@ -91,8 +93,8 @@ const receivedMessage = (event) => {
 
   if (messageAttachments) {
       if (messageAttachments[0].type === 'image') { 
-          console.log(messageAttachments[0].payload.url);
-          sendImageMessage(senderID);
+          let imageUrl = messageAttachments[0].payload.url;
+          sendImageMessage(senderID, imageUrl);
       }
   } else if (messageText) {
     let response = 'yo yo yo yo';

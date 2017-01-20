@@ -35,8 +35,11 @@ photo.init(scene);
 dolphin.init(scene);
 background.init(scene);
 
-const renderFrame = (pos) => {
-    camera.position.set(pos.x, pos.y, pos.z);
+const renderFrame = (props) => {
+    let { x: cameraX, y: cameraY, z: cameraZ } = props.pos;
+    let { imageUrl } = props;
+    
+    camera.position.set(cameraX, cameraY, cameraZ);
     camera.lookAt(scene.position);
     renderer.render(scene, camera);
     return canvas;
