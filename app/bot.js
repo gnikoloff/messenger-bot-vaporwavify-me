@@ -1,6 +1,6 @@
 const request = require('request');
 const cloudinary = require('cloudinary');
-
+const renderer = require('./renderer/renderer');
 const access = process.env.FB_ACCESS_TOKEN;
 
 const callSendAPI = (messageData) => {
