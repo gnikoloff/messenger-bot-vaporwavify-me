@@ -1,5 +1,5 @@
 'use strict';
-const request = require('request');
+const request = require('request').defaults({ encoding: null });
 const jsdom = require("jsdom").jsdom;
 const Canvas = require('canvas-prebuilt');
 
@@ -51,8 +51,11 @@ const init = (scene) => {
 }
 
 const addTexture = (imageUrl) => {
-    request.get(imageUrl, (err, res, buffer) => {
-        console.log(typeof buffer + '````````````````````````````')
+    request.get(imageUrl, (err, res, data) => {
+        if (!error && response.statusCode == 200) {
+            data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+            console.log(data);
+        }
     });
     //request({
     //    uri: imageUrl,
