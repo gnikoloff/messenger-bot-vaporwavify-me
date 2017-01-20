@@ -4,6 +4,7 @@ var jsdom = require("jsdom").jsdom;
 global.document = jsdom("<!doctype html><html><head></head><body></body></html>");
 global.window = document.defaultView;
 global.XMLHttpRequest = require('xhr2');
+global.URL = require('url');
 
 const THREE = require('three');
 
