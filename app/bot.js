@@ -91,7 +91,7 @@ const receivedMessage = (event) => {
 
   if (messageAttachments) {
       if (messageAttachments[0].type === 'image') { 
-          console.log(messageAttachments[0]);
+          console.log(messageAttachments[0].payload.url);
           sendImageMessage(senderID);
       }
   } else if (messageText) {
