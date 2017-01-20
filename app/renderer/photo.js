@@ -54,7 +54,11 @@ const addTexture = (imageUrl) => {
     request.get(imageUrl, (err, res, data) => {
         if (!err && res.statusCode == 200) {
             data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(data).toString('base64');
-            console.log(data);
+            
+            let image = new Canvas.Image();
+            image.src = body;
+            mesh.material.map = new THREE.Texture(image);
+            mesh.material.needsUpdate = true;
         }
     });
     //request({
