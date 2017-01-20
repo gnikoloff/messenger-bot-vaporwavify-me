@@ -53,7 +53,7 @@ const init = (scene) => {
 const addTexture = (imageUrl) => {
     request.get(imageUrl, (err, res, data) => {
         if (!err && res.statusCode == 200) {
-            data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+            data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(data).toString('base64');
             console.log(data);
         }
     });
