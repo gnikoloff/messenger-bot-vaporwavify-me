@@ -56,10 +56,11 @@ const addTexture = (imageUrl) => {
             data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(data).toString('base64');
             
             let image = new Canvas.Image();
+            let texture = new THREE.Texture(image);
             image.onload = () => {
-                console.log('img loaded loaded loaded loaded')
-                mesh.material.map = new THREE.Texture(image);
-                mesh.material.needsUpdate = true;
+                texture.needsUpdate = true;
+                
+                mesh.material.map = texture;
             }
             image.src = data;
         }
