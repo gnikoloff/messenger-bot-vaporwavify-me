@@ -54,8 +54,9 @@ const addTexture = (imageUrl) => {
         uri: imageUrl,
         method: 'GET'
     }, (err, res, body) => {
-        let texture = `data:image/png;base64,${body}`;
-        console.log(texture)
+        body = `data:image/png;base64,${body}`;
+        mesh.material.needsUpdate = true;
+        mesh.material.map = new THREE.Texture(body);
     });
 }
 
