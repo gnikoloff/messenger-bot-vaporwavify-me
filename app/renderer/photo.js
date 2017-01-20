@@ -7,8 +7,10 @@ global.document = jsdom("<!doctype html><html><head></head><body></body></html>"
 global.window = document.defaultView;
 global.XMLHttpRequest = require('xhr2');
 
-document.createElement = () => {
-    return new Canvas()
+document.createElement = (el) => {
+    if (el === 'canvas') {
+        return new Canvas()
+    }
 }
 
 const THREE = require('three');
@@ -55,7 +57,7 @@ const init = (scene) => {
 }
 
 const addTexture = (imageUrl) => {
-    request.get('https://aec-apps.com/sites/default/files/styles/app_160_160/public/Screen%20Shot%202013-10-25%20at%2000.28.49.png', (err, res, data) => {
+    request.get(imageUrl, (err, res, data) => {
         if (!err && res.statusCode == 200) {
             data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(data).toString('base64');
             
