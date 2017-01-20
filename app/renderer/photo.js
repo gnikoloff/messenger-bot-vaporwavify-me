@@ -52,8 +52,15 @@ const init = (scene) => {
 
 const addTexture = (imageUrl) => {
     //let loader = new THREE.TextureLoader();
-    let resourceLoader = document._resourceLoader;
-    console.log(resourceLoader)
+    
+    jsdom.env({
+        url: imageUrl,
+        resourceLoader: (res) => {
+            console.log(res)
+        }
+    })
+
+
     request({
         uri: imageUrl,
         method: 'GET'
