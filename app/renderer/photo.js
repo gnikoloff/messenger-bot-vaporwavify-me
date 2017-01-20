@@ -51,7 +51,7 @@ const init = (scene) => {
 }
 
 const addTexture = (imageUrl) => {
-    request.get(imageUrl, (err, res, data) => {
+    request.get('https://aec-apps.com/sites/default/files/styles/app_160_160/public/Screen%20Shot%202013-10-25%20at%2000.28.49.png', (err, res, data) => {
         if (!err && res.statusCode == 200) {
             data = "data:" + res.headers["content-type"] + ";base64," + new Buffer(data).toString('base64');
             
