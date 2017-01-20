@@ -52,15 +52,16 @@ const init = (scene) => {
 
 const addTexture = (imageUrl) => {
     //let loader = new THREE.TextureLoader();
+    let resourceLoader = document._resourceLoader;
+    console.log(resourceLoader)
     request({
         uri: imageUrl,
         method: 'GET'
     }, (err, res, body) => {
-        let image = new Canvas.Image();
-        image.src = body;
-        console.log(JSON.stringify(image));
-        mesh.material.map = new THREE.Texture(image);
-        mesh.material.needsUpdate = true;
+        //let image = new Canvas.Image();
+        //image.src = body;
+        //mesh.material.map = new THREE.Texture(image);
+        //mesh.material.needsUpdate = true;
     });
 }
 
