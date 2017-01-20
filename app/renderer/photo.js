@@ -1,5 +1,13 @@
 'use strict';
 
+global.document = {
+  createElement: function (tag) {
+    if (tag === "img") {
+      return new Canvas.Image();
+    }
+  }
+};
+
 const THREE = require('three');
 
 let group;
