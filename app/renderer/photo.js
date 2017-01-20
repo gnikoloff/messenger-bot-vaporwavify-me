@@ -7,6 +7,10 @@ global.document = jsdom("<!doctype html><html><head></head><body></body></html>"
 global.window = document.defaultView;
 global.XMLHttpRequest = require('xhr2');
 
+document.createElement = () => {
+    return new Canvas()
+}
+
 const THREE = require('three');
 
 let group;
