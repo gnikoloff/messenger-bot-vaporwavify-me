@@ -1,5 +1,5 @@
 'use strict';
-
+const events = require('events');
 var jsdom = require("jsdom").jsdom;
 global.document = jsdom("<!doctype html><html><head></head><body></body></html>");
 global.window = document.defaultView;
@@ -16,6 +16,8 @@ let mesh;
 let triangleGeometry;
 let triangleMaterial;
 let triangleMesh;
+
+let eventEmitter = new events.EventEmitter();
 
 const init = (scene) => {
     group = new THREE.Group();
@@ -54,7 +56,7 @@ const addTexture = (imageUrl) => {
         method: 'GET'
     }, (error, response, body) => {
         body = new THREE.Texture(body);
-        console.log(body)
+        console.log(response)
     });
 }
 
