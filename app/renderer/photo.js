@@ -55,7 +55,7 @@ const addTexture = (imageUrl) => {
     
     jsdom.env({
         url: imageUrl,
-        resourceLoader: (res) => {
+        resourceLoader: (res, cb) => {
             console.log(res)
         }
     })
