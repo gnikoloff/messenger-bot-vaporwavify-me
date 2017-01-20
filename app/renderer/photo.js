@@ -3,7 +3,8 @@
 var jsdom = require("jsdom").jsdom;
 global.document = jsdom("<html><head></head><body></body></html>");
 global.window = document.defaultView;
-global.XMLHttpRequest = require('xmlhttprequest')
+global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+
 const THREE = require('three');
 
 let group;
@@ -48,7 +49,13 @@ const init = (scene) => {
 }
 
 const addTexture = (imageUrl) => {
-    mesh.material.map = new THREE.TextureLoader().load(imageUrl);
+    let loader = new THREE.TextureLoader();
+    loader.load(
+        imageUrl,
+        (texture) => {
+            mesh.material.map = texture;
+        }
+    )
 }
 
 module.exports = {
