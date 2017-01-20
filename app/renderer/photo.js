@@ -43,7 +43,7 @@ const init = (scene) => {
     scene.add(group)
 }
 
-const addTexture = () => {
+const addTexture = (imageUrl) => {
     mesh.material.map = new THREE.TextureLoader().load(imageUrl);
 }
 
