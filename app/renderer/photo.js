@@ -1,12 +1,8 @@
 'use strict';
 
-global.document = {
-  createElementNS: function (tag) {
-    if (tag === "img") {
-      return new Canvas.Image();
-    }
-  }
-};
+var jsdom = require("jsdom").jsdom;
+var document = jsdom("<html><head></head><body></body></html>");
+var window = document.defaultView;
 
 const THREE = require('three');
 
