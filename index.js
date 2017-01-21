@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static('app'));
 
 app.route('/').get((req, res) => {
+    let imageUrl = `https://www.tutorialspoint.com/nodejs/images/logo.png`;
     let renderExport = renderer.renderFrame({
         pos: {
                 x: 0, 
