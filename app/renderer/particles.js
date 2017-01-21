@@ -30,5 +30,6 @@ const rotateX = (angle) => {
 }
 
 module.exports = {
-    init
+    init,
+    rotateX
 }
