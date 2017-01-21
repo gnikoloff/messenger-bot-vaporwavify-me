@@ -8,7 +8,7 @@ let material;
 let mesh;
 
 let offsets = {
-    dist: 0.15 + Math.random() * 0.1,
+    dist: 0.15 + Math.random() * 0.4,
     zOffset: 8
 };
 
@@ -40,6 +40,11 @@ const init = (scene) => {
     mesh = addSphere(material)
     scene.add(wireMesh);
     scene.add(mesh);
+}
+
+const reshuffle = () => {
+    dist: 0.15 + Math.random() * 0.4,
+    mesh.geometry.vertices.forEach(displaceVert);
 }
 
 module.exports = {
