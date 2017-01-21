@@ -95,7 +95,7 @@ const receivedMessage = (event) => {
       if (messageAttachments[0].type === 'image') { 
           let imageUrl = messageAttachments[0].payload.url;
           renderer.changeTexture(imageUrl);
-          eventEmitter.on('photo-rendered', () => {
+          eventEmitter.registerEvent('photo-rendered', () => {
               console.log('yo the event is captured yo yo yo yo yo oyo yoooy oyo yoyoyo yo')
             sendImageMessage(senderID, imageUrl);
           });

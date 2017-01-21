@@ -72,7 +72,7 @@ const addTexture = (imageUrl) => {
                 mesh.material.map = new THREE.Texture(image);
                 mesh.material.map.needsUpdate = true;
 
-                events.emit('photo-rendered');
+                events.emitEvent('photo-rendered');
             }
             image.src = data;
         }
