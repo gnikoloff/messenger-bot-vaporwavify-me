@@ -37,7 +37,7 @@ background.init(scene);
 
 const renderFrame = (props) => {
     let { 
-        posZ: cameraZ
+        posZ: cameraZ,
         imageUrl,
         angle 
     } = props;
