@@ -20,10 +20,15 @@ app.use(express.static('app'));
 
 app.route('/').get((req, res) => {
     let renderExport = renderer.renderFrame({
-        x: 0, y: -120, z: 20 + Math.random() * 100
-    });
+        pos: {
+                x: 0, 
+                y: -120, 
+                z: 20 + Math.random() * 40
+            },
+            imageUrl
+    }).pngStream();
     res.writeHead(200, { 'Content-Type': 'image/png' });
-    renderExport.pngStream().pipe(res); 
+    renderExport.pipe(res); 
 });
 
 app.route('/webhook/').get((req, res) => {
