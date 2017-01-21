@@ -91,5 +91,6 @@ const rotateTriangle = (angle) => {
 
 module.exports = {
     init,
-    addTexture
+    addTexture,
+    rotateTriangle
 }
