@@ -39,8 +39,8 @@ const renderFrame = (props) => {
     let { x: cameraX, y: cameraY, z: cameraZ } = props.pos;
     let { imageUrl } = props;
     
-    background.mesh.rotation.x = -10 + Math.random() * 20;
-    particles.group.rotation.x = -10 + Math.random() * 20;
+    background.rotation.x = -10 + Math.random() * 20;
+    particles.rotation.x = -10 + Math.random() * 20;
 
     camera.position.set(cameraX, cameraY, cameraZ);
     camera.lookAt(scene.position);
