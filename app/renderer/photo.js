@@ -17,7 +17,6 @@ const eventEmitter = require('../utils/customEmitter');
 const THREE = require('three');
 
 let group;
-let events;
 
 let geometry;
 let material;
@@ -36,8 +35,6 @@ const init = (scene) => {
     
     group = new THREE.Group();
     group.add(mesh);
-
-    events = new EventEmitter();
 
     triangleGeometry = new THREE.Geometry();
 
@@ -72,7 +69,7 @@ const addTexture = (imageUrl) => {
                 mesh.material.map = new THREE.Texture(image);
                 mesh.material.map.needsUpdate = true;
 
-                events.emitEvent('photo-rendered');
+                eventEmitter.emitEvent('photo-rendered');
             }
             image.src = data;
         }
