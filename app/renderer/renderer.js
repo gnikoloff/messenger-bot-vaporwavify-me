@@ -12,6 +12,7 @@ const particles = require('./particles');
 const photo = require('./photo');
 const dolphin = require('./dolphin');
 const background = require('./background');
+const gameboy = require('./gameboy');
 
 let width  = 780;
 let height = 410;
@@ -34,6 +35,7 @@ particles.init(scene);
 photo.init(scene);
 dolphin.init(scene);
 background.init(scene);
+gameboy.init(scene);
 
 const renderFrame = (props) => {
     let { x: cameraX, y: cameraY, z: cameraZ } = props.pos;
