@@ -29,21 +29,21 @@ renderer.setSize(width, height);
 renderer.setClearColor(0x3a104b)
 camera.lookAt(scene.position);
 
-terrain.init(scene);
-particles.init(scene);
-photo.init(scene);
-dolphin.init(scene);
-background.init(scene);
+const group = new THREE.Group();
+
+terrain.init(group);
+particles.init(group);
+photo.init(group);
+dolphin.init(group);
+background.init(group);
 
 const renderFrame = (props) => {
-    let { 
-        posZ: cameraZ,
-        imageUrl,
-        angle 
-    } = props;
-    let cameraX = 50 * Math.cos(angle) * Math.cos(angle); 
-    let cameraY = 50 * Math.cos(angle) * Math.sin(angle);
+    let { x: cameraX, y: cameraY, z: cameraZ } = props.pos;
+    let { imageUrl } = props;
 
+    let rotation = -10 + Math.random() * 20;
+    group.rotation.x = rotation;
+    
     camera.position.set(cameraX, cameraY, cameraZ);
     camera.lookAt(scene.position);
     renderer.render(scene, camera);
