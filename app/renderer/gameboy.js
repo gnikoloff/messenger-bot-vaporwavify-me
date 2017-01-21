@@ -14,7 +14,7 @@ const init = (scene) => {
         }
         data = JSON.parse(data);
         let model = loader.parse(data);
-        let mesh = new THREE.Mesh(model.geometry, new THREE.MeshNormalMaterial());
+        let mesh = new THREE.Mesh(model.geometry, new THREE.MeshFaceMaterial(model.materials));
         mesh.scale.set(9, 9, 9);
         mesh.position.set(30, -40, 0);
         mesh.rotation.x += Math.PI / 2;
