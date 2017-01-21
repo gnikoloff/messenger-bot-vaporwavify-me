@@ -5,6 +5,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const fs = require('fs');
 
+global.EventEmitter = require('events').EventEmitter;
+
 const renderer = require('./app/renderer/renderer');
 const bot = require('./app/bot');
 

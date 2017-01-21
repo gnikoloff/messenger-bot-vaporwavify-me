@@ -1,10 +1,9 @@
 const request = require('request');
 const cloudinary = require('cloudinary');
-const EventEmitter = require('events').EventEmitter;
 const renderer = require('./renderer/renderer');
 const access = process.env.FB_ACCESS_TOKEN;
 
-let events = new EventEmitter();
+const eventEmitter = require('./utils/customEmitter');
 
 const callSendAPI = (messageData) => {
   request({
@@ -96,7 +95,8 @@ const receivedMessage = (event) => {
       if (messageAttachments[0].type === 'image') { 
           let imageUrl = messageAttachments[0].payload.url;
           renderer.changeTexture(imageUrl);
-          events.on('photo-rendered', () => {
+          eventEmitter.on('photo-rendered', () => {
+              console.log('yo the event is captured yo yo yo yo yo oyo yoooy oyo yoyoyo yo')
             sendImageMessage(senderID, imageUrl);
           });
       }

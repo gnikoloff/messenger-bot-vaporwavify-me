@@ -13,7 +13,7 @@ document.createElement = (el) => {
     }
 }
 
-const EventEmitter = require('events').EventEmitter;
+const eventEmitter = require('../utils/customEmitter');
 const THREE = require('three');
 
 let group;
@@ -71,7 +71,7 @@ const addTexture = (imageUrl) => {
             image.onload = () => {
                 mesh.material.map = new THREE.Texture(image);
                 mesh.material.map.needsUpdate = true;
-                
+
                 events.emit('photo-rendered');
             }
             image.src = data;
