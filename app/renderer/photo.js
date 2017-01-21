@@ -85,6 +85,10 @@ const addTexture = (imageUrl) => {
     //});
 }
 
+const rotateTriangle = (angle) => {
+    triangleMesh.rotation.z = angle;
+}
+
 module.exports = {
     init,
     addTexture

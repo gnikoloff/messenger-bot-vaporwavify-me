@@ -43,6 +43,7 @@ const renderFrame = (props) => {
 
     terrain.reshuffle();    
     particles.rotateX(-10 + Math.random() * 20);
+    photo.rotateTriangle(-10 + Math.random() * 20);
     background.rotateX(-10 + Math.random() * 20);
     gameboy.rotateY(-10 + Math.random() * 20);
 
