@@ -26,24 +26,22 @@ const renderer = new THREE.CanvasRenderer({
 });
 
 renderer.setSize(width, height);
-renderer.setClearColor(0x3a104b)
+renderer.setClearColor(0x3a104b);
 camera.lookAt(scene.position);
 
-const group = new THREE.Group();
-
-terrain.init(group);
-particles.init(group);
-photo.init(group);
-dolphin.init(group);
-background.init(group);
+terrain.init(scene);
+particles.init(scene);
+photo.init(scene);
+dolphin.init(scene);
+background.init(scene);
 
 const renderFrame = (props) => {
     let { x: cameraX, y: cameraY, z: cameraZ } = props.pos;
     let { imageUrl } = props;
-
-    let rotation = -10 + Math.random() * 20;
-    group.rotation.x = rotation;
     
+    background.mesh.rotation.x = -10 + Math.random() * 20;
+    particles.group.rotation.x = -10 + Math.random() * 20;
+
     camera.position.set(cameraX, cameraY, cameraZ);
     camera.lookAt(scene.position);
     renderer.render(scene, camera);

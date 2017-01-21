@@ -12,6 +12,7 @@ const init = (scene) => {
     material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, color: 0x65287e, wireframe: true });
     mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
+    return mesh;
 }
 
 module.exports = {

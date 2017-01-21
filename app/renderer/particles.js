@@ -23,6 +23,7 @@ const init = (scene) => {
         group.add(mesh);
     }
     scene.add(group);
+    return group;
 }
 
 module.exports = {
