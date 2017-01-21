@@ -13,9 +13,11 @@ document.createElement = (el) => {
     }
 }
 
+const EventEmitter = require('events').EventEmitter;
 const THREE = require('three');
 
 let group;
+let events;
 
 let geometry;
 let material;
@@ -26,13 +28,16 @@ let triangleMaterial;
 let triangleMesh;
 
 const init = (scene) => {
-    group = new THREE.Group();
     geometry = new THREE.PlaneGeometry(25, 30, 2, 2);
     material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
     mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(0, 0, 0);
     mesh.rotation.x = Math.PI / 2;
+    
+    group = new THREE.Group();
     group.add(mesh);
+
+    events = new EventEmitter();
 
     triangleGeometry = new THREE.Geometry();
 
@@ -66,6 +71,8 @@ const addTexture = (imageUrl) => {
             image.onload = () => {
                 mesh.material.map = new THREE.Texture(image);
                 mesh.material.map.needsUpdate = true;
+                
+                events.emit('photo-rendered');
             }
             image.src = data;
         }

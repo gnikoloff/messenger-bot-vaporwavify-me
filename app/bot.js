@@ -37,7 +37,6 @@ const sendTextMessage = (recipientId, messageText) => {
 }
 
 const sendImageMessage = (recipientId, imageUrl) => {
-    
     let renderExport = renderer.renderFrame({
             pos: {
                 x: 0, y: -120, z: 20 + Math.random() * 40
@@ -61,12 +60,12 @@ const sendImageMessage = (recipientId, imageUrl) => {
                 id: recipientId
             },
             message: {
-               attachment: {
-                   type: 'image',
-                   payload: {
-                       url: src
-                   }
-               } 
+            attachment: {
+                type: 'image',
+                payload: {
+                    url: src
+                }
+            } 
             }
         }
         
@@ -74,7 +73,6 @@ const sendImageMessage = (recipientId, imageUrl) => {
     })
     renderExport.pipe(stream);
     renderExport.on('end', stream.end);
-
 }
 
 const receivedMessage = (event) => {
@@ -94,7 +92,10 @@ const receivedMessage = (event) => {
   if (messageAttachments) {
       if (messageAttachments[0].type === 'image') { 
           let imageUrl = messageAttachments[0].payload.url;
-          sendImageMessage(senderID, imageUrl);
+          renderer.changeTexture(imageUrl);
+          events.on('photo-rendered', () => {
+            sendImageMessage(senderID, imageUrl);
+          });
       }
   } else if (messageText) {
     let response = 'yo yo yo yo';
