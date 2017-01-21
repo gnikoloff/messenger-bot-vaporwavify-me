@@ -20,6 +20,6 @@ const init = (scene) => {
     });
 }
 
-return {
+module.exports = {
     init
 }
