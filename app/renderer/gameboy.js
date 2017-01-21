@@ -16,7 +16,7 @@ const init = (scene) => {
         let model = loader.parse(data);
         let mesh = new THREE.Mesh(model.geometry, new THREE.MeshNormalMaterial());
         mesh.scale.set(8, 8, 8);
-        mesh.position.set(30, 25, 0);
+        mesh.position.set(30, -25, 0);
         mesh.rotation.x += Math.PI / 2;
         scene.add(mesh);
     });
