@@ -43,10 +43,11 @@ const init = (scene) => {
 }
 
 const reshuffle = () => {
-    dist: 0.15 + Math.random() * 0.4,
+    offsets.dist = 0.15 + Math.random() * 0.4,
     mesh.geometry.vertices.forEach(displaceVert);
 }
 
 module.exports = {
-    init
+    init,
+    reshuffle
 }
