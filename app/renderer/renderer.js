@@ -6,7 +6,6 @@ require(path.join(`${require.resolve('three')}/../../examples/js/renderers/Proje
 require(path.join(`${require.resolve('three')}/../../examples/js/renderers/CanvasRenderer`));
 const Canvas = require('canvas-prebuilt');
 const fs = require("fs");
-const EventEmitter = require('events').EventEmitter;
 
 const terrain = require('./plane-terrain');
 const particles = require('./particles');
@@ -16,8 +15,6 @@ const background = require('./background');
 
 let width  = 780;
 let height = 410;
-
-let events = new EventEmitter();
 
 const canvas = new Canvas(width, height);
 const scene = new THREE.Scene();
@@ -41,16 +38,13 @@ background.init(scene);
 const renderFrame = (props) => {
     let { x: cameraX, y: cameraY, z: cameraZ } = props.pos;
     let { imageUrl } = props;
-    events.on('photo-rendered', () => {
-        
-    })
     camera.position.set(cameraX, cameraY, cameraZ);
     camera.lookAt(scene.position);
     renderer.render(scene, camera);
     return canvas;
 }
 
-const changeTexture = () => {
+const changeTexture = (imageUrl) => {
     photo.addTexture(imageUrl);
 }
 
