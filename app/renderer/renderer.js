@@ -41,6 +41,9 @@ const renderFrame = (props) => {
     let { x: cameraX, y: cameraY, z: cameraZ } = props.pos;
     let { imageUrl } = props;
 
+
+
+
     terrain.reshuffle();    
     particles.rotateX(-10 + Math.random() * 20);
     background.rotateX(-10 + Math.random() * 20);
