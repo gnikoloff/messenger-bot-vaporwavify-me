@@ -23,7 +23,10 @@ const init = (scene) => {
         group.add(mesh);
     }
     scene.add(group);
-    return group;
+}
+
+const rotateX = (angle) => {
+    group.rotation.x = angle;
 }
 
 module.exports = {

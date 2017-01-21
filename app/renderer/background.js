@@ -12,9 +12,13 @@ const init = (scene) => {
     material = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, color: 0x65287e, wireframe: true });
     mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
-    return mesh;
+}
+
+const rotateX = (angle) => {
+    mesh.rotation.x = angle;
 }
 
 module.exports = {
-    init
+    init,
+    rotateX
 }
