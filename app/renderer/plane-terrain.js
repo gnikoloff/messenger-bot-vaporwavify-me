@@ -44,6 +44,7 @@ const init = (scene) => {
 
 const reshuffle = () => {
     offsets.dist = 0.15 + Math.random() * 0.4,
+    wireMesh.geometry.vertices.forEach(displaceVert);
     mesh.geometry.vertices.forEach(displaceVert);
 }
 
