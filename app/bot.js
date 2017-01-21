@@ -40,10 +40,9 @@ const sendTextMessage = (recipientId, messageText) => {
 
 const sendImageMessage = (recipientId, imageUrl) => {
     let renderExport = renderer.renderFrame({
-            pos: {
-                x: 0, y: -120, z: 20 + Math.random() * 40
-            },
-            imageUrl
+            posZ: 20 + Math.random() * 40,
+            imageUrl,
+            angle: Math.random() * 360
         }).pngStream();
 
     let stream = cloudinary.uploader.upload_stream((res) => {
