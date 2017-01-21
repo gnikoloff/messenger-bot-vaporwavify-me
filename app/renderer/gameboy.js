@@ -19,7 +19,7 @@ const init = (scene) => {
         mesh.scale.set(9, 9, 9);
         mesh.position.set(30, -40, 0);
         mesh.rotation.x += Math.PI / 2;
-        mesh.rotation.y += Math.PI / 6;
+        mesh.rotation.y -= Math.PI / 6;
         scene.add(mesh);
     });
 }
