@@ -15,9 +15,10 @@ const init = (scene) => {
         data = JSON.parse(data);
         let model = loader.parse(data);
         let mesh = new THREE.Mesh(model.geometry, new THREE.MeshNormalMaterial());
-        mesh.scale.set(8, 8, 8);
-        mesh.position.set(30, -25, 0);
+        mesh.scale.set(9, 9, 9);
+        mesh.position.set(30, -40, 0);
         mesh.rotation.x += Math.PI / 2;
+        mesh.rotation.y += Math.PI / 6;
         scene.add(mesh);
     });
 }
