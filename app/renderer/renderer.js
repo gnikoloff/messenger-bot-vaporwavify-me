@@ -41,8 +41,8 @@ const renderFrame = (props) => {
         imageUrl,
         angle 
     } = props;
-    cameraX = 50 * Math.cos(angle) * Math.cos(angle); 
-    cameraY = 50 * Math.cos(angle) * Math.sin(angle);
+    let cameraX = 50 * Math.cos(angle) * Math.cos(angle); 
+    let cameraY = 50 * Math.cos(angle) * Math.sin(angle);
 
     camera.position.set(cameraX, cameraY, cameraZ);
     camera.lookAt(scene.position);
